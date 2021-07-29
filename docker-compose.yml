@@ -1,0 +1,91 @@
+version: "3"
+
+services:
+    zookeeper:
+        image: zookeeper
+
+    kafka:
+        image: wurstmeister/kafka
+        hostname: kafka
+        environment:
+            KAFKA_ADVERTISED_HOST_NAME: kafka
+            KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+            KAFKA_ADVERTISED_PORT: 9092
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        depends_on:
+            - zookeeper
+
+    postgres:
+        image: mdillon/postgis
+        environment:
+            POSTGRES_USER: ngb
+            POSTGRES_PASSWORD: *PASSWORD*
+            POSTGRES_DB: ngb
+        volumes:
+            - ../rbac-mount-files/postgresql:/var/lib/postgresql/data
+
+    scorpio:
+        image: scorpiobroker/scorpio:scorpio-aaio_latest
+        depends_on:
+            - kafka
+            - postgres
+
+    orion:
+        image: fiware/orion:3.1.0
+        command: -dbhost mongo
+        depends_on:
+            - mongo
+
+    api-umbrella:
+        image: fiware/api-umbrella:0.15.5
+        hostname: umbrella
+        ports:
+            - "443:443"
+            - "80:80"
+        environment:
+            - MAXMIND_LICENSE_KEY=*LICENSE*
+        volumes:
+            - ./api-umbrella.yml:/etc/api-umbrella/api-umbrella.yml
+            - /etc/letsencrypt/live/accounts.*domain.cc*:/etc/letsencrypt/live/accounts.domain.cc/
+        depends_on:
+            - umbrella_elasticsearch
+
+    umbrella_elasticsearch:
+           image: elasticsearch:2.4
+           volumes:
+                   - ./mnt/umbrella-elasticsearch:/usr/share/elasticsearch/data
+           command: elasticsearch -Des.index.max_result_window=5000
+
+    mongo:
+            image: mongo:3.6
+            volumes:
+                    - ./mnt/mongo-data:/data/db
+
+    keyrock:
+            image: fiware/idm:7.8.2
+            hostname: keyrock
+            environment:
+                - IDM_DB_HOST=mysql
+                - IDM_DB_PASS=*PASSWORD*
+                - IDM_DB_USER=root
+                - IDM_ADMIN_USER=*USER*
+                - IDM_ADMIN_EMAIL=*PASSWORD
+                - IDM_ADMIN_PASS=*PASSWORD*
+                - IDM_TITLE=ODALA RBAC
+                - IDM_DB_PORT=3306
+                - IDM_HOST=accounts.*domain.cc*
+                - IDM_DB_NAME=idm
+                - IDM_DB_SEED=true
+                - IDM_DEBUG=true
+                - DEBUG=*
+            depends_on:
+                - mysql
+
+    mysql:
+            image: mysql:5.7.21
+            hostname: mysql
+            environment:
+                - MYSQL_ROOT_PASSWORD=*PASSWORD*
+            volumes:
+                - ../rbac-mount-files/mysql-data:/var/lib/mysql

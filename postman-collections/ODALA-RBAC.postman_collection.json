@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "2ae8ffa1-77b5-4986-bfbc-d0193c69b599",
+		"name": "ODALA-RBAC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://accounts.odala-rbac.cinfra.fi/oauth2/token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "client-secret-here",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "client-id-here",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "keyrock-email",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "keyrock-pass",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://accounts.odala-rbac.cinfra.fi/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"accounts",
+						"odala-rbac",
+						"cinfra",
+						"fi"
+					],
+					"path": [
+						"oauth2",
+						"token"
+					]
+				},
+				"description": "example how to get an access_token from Keyrock"
+			},
+			"response": []
+		},
+		{
+			"name": "https://orion.odala-rbac.cinfra.fi/v2/entities/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer access_token_here",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://orion.odala-rbac.cinfra.fi/v2/entities/",
+					"protocol": "https",
+					"host": [
+						"orion",
+						"odala-rbac",
+						"cinfra",
+						"fi"
+					],
+					"path": [
+						"v2",
+						"entities"
+					]
+				},
+				"description": "Example how to get entities from Orion with RBAC"
+			},
+			"response": []
+		}
+	]
+}

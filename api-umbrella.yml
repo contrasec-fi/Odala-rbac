@@ -1,0 +1,41 @@
+app_env: production
+
+http_port: 80
+https_port: 443
+
+services:
+        - router
+        - web
+mongodb:
+  url: "mongodb://mongo:27017/api_umbrella"
+
+elasticsearch:
+  api_version: 2
+  hosts:
+          - http://umbrella_elasticsearch:9200
+
+web:
+        admin:
+                username_is_email: true
+                auth_strategies:
+                        enabled:
+                                - local
+hosts:
+        - hostname: umbrella.*domain.cc*
+          default: true
+          ssl_cert: /etc/letsencrypt/live/accounts.*domain.cc*/fullchain.pem
+          ssl_cert_key: /etc/letsencrypt/live/accounts.odala-rbac.cinfra.fi/privkey.pem
+          http_strict_transport_security: true
+router:
+    web_app_host: "umbrella.*domain.cc"
+nginx:
+      large_client_header_buffers: 8 64k
+gatekeeper:
+      api_key_methods:
+        - fiware-oauth2
+        - header
+        - getParam
+      api_key_cache: false
+      default_idp:
+              backend_name: fiware-oauth2
+              host: https://accounts.*domain.cc*
