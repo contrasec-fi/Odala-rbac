@@ -16,11 +16,7 @@ Admin credentials are in `docker-compose.yml` file, lines 72 and 74:
 ```
 
 # 2.1 Registering an application
-<<<<<<< HEAD
-To register an application into Keyrock, it can be done at https://accounts.odala-rbac.cinfra.fi/idm/applications/new or clicking `Register` button in the `Applications` box.
-=======
 To register an application into Keyrock, it can be done at https://accounts.domain.cc/idm/applications/new or clicking `Register` button in the `Applications` box.
->>>>>>> 0c2b2b35a1686b890251cd99ce801796793da71f
 
 **NOTE:** In this example, Orion Context Broker is added into Keyrock. 
 
@@ -35,11 +31,7 @@ In the `Manage Roles` page, new roles and permissions can be made by clicking `+
 ![](pictures/keyrock-orion3.png)
 
 # 2.2 Creating new user
-<<<<<<< HEAD
-To utilize registered application, a user is needed. To create new user, it can be done at https://accounts.odala-rbac.cinfra.fi/idm/admins/list_users or clicking `Users` in `Main menu` list.
-=======
 To utilize registered application, a user is needed. To create new user, it can be done at https://accounts.domain.cc/idm/admins/list_users or clicking `Users` in `Main menu` list.
->>>>>>> 0c2b2b35a1686b890251cd99ce801796793da71f
 
 Clicking `Create user` displays a pop-up window where the new user's information can be added. Clicking `Create` will save user into database
 
@@ -71,8 +63,4 @@ API Umbrella needs `Client ID` in order to get the RBAC working. `Client ID` is 
 # 4 References
 - [Keyrock documentation](https://fiware-idm.readthedocs.io/)
 - [API Umbrella documentation](https://api-umbrella.readthedocs.io/en/latest/)
-<<<<<<< HEAD
 - [OAuth2](https://oauth.net/2/)
-=======
-- [OAuth2](https://oauth.net/2/)
->>>>>>> 0c2b2b35a1686b890251cd99ce801796793da71f
