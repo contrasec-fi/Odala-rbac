@@ -61,6 +61,6 @@ Next step is to configure the Keyrock component.
 [Keyrock setup guide](keyrock.md)
 
 # 4 References
-- [Documentation](https://api-umbrella.readthedocs.io/en/latest/)
+- [Umbrella Documentation](https://api-umbrella.readthedocs.io/en/latest/)
 - [Github](https://github.com/FIWARE/api-umbrella)
 - [API Management](https://en.wikipedia.org/wiki/API_management)
