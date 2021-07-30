@@ -58,7 +58,7 @@ This guide shows how the Orion Context Broker and Keyrock Identity Management co
 # 3 Next steps
 Next step is to configure the Keyrock component. 
 
-[Keyrock setup guide](keyrock-setup.md)
+[Keyrock setup guide](keyrock.md)
 
 # 4 References
 - [Documentation](https://api-umbrella.readthedocs.io/en/latest/)
