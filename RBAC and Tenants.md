@@ -1,8 +1,8 @@
-# 1. RBAC and Tenants
+# 1 RBAC and Tenants
 
 Tenancy is logical data separation. Some brokers, like Scorpio and Orion support multitenancy. This together with RBAC allows more detailed data access granularity.
 
-# 2. Example of Tenant configuration in Umbrella
+# 2 Example of Tenant configuration in Umbrella
 
 1. Create a required role in "Global request settings" which does not exist. This will force Umbrella to evaluate Sub-URL rules.
 
@@ -12,7 +12,7 @@ Tenancy is logical data separation. Some brokers, like Scorpio and Orion support
 
 ![](/pictures/ten2.JPG)
 
-# 2. References
+# 2 References
 
 [Umbrella Read the docs](https://api-umbrella.readthedocs.io/en/latest/)
 
