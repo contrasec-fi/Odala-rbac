@@ -7,12 +7,10 @@ Keyrock is accessible through API Umbrella, at https://accounts.domain.cc/
 
 ![](pictures/keyrock-login.png)
 
-Admin credentials are in `docker-compose.yml` file, lines 72 and 74:
+Admin credentials are in `docker-compose.yml` file, lines 73 and 74:
 ```
-72                - IDM_ADMIN_USER=USER
 73                - IDM_ADMIN_EMAIL=EMAIL
 74                - IDM_ADMIN_PASS=PASSWORD
-75                - IDM_TITLE=ODALA RBAC
 ```
 
 # 2.1 Registering an application
