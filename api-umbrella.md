@@ -48,6 +48,8 @@ This guide shows how the Orion Context Broker and Keyrock Identity Management co
    ![](pictures/umbrella-orion3.png)
    
    ![](pictures/umbrella-orion4.png)
+   
+   ![](pictures/umbrella-orion-suburl.png)
 
 3. Publishing changes
 
